@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonas JIPBOUO — Alpha Motors</title>
+
+<!--
+  ============================================================
+  COMMENT MODIFIER CETTE PAGE
+  ============================================================
+  Toutes les informations de la carte (nom, poste, téléphone,
+  WhatsApp, email, site web, lien du catalogue PDF) se trouvent
+  dans l'objet CONFIG ci-dessous (juste après <body>, dans la
+  balise <script>). Modifiez uniquement les valeurs entre
+  guillemets " ", sans toucher au reste du code.
+
+  Pour mettre le catalogue en ligne sur GitHub Pages :
+  1. Créez un dépôt GitHub (ex: alpha-motors-card)
+  2. Mettez ce fichier en index.html à la racine
+  3. Mettez le PDF du catalogue dans le même dépôt
+     (ex: catalogue.pdf) et adaptez catalogueUrl ci-dessous
+  4. Activez GitHub Pages (Settings > Pages > Branch: main)
+  5. Votre lien sera : https://VOTRE-USER.github.io/alpha-motors-card/
+  6. Le QR code de cette page pointe automatiquement vers
+     l'URL réelle où elle est hébergée (qrTargetUrl), à adapter
+     une fois le site en ligne.
+  ============================================================
+-->
+
+<style>
+  :root{
+    --bg: #0d0c0a;
+    --bg-2: #151310;
+    --gold: #c9a24b;
+    --gold-light: #e8cb86;
+    --cream: #f4ecd8;
+    --line: rgba(201,162,75,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(circle at 30% 0%, #1a1712 0%, #0d0c0a 60%);
+    color: var(--cream);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 32px 18px 60px;
+  }
+
+  .brandmark{
+    margin-top: 8px;
+    text-align:center;
+  }
+  .brandmark .triangle{
+    width:46px;height:46px;margin:0 auto 6px;
+  }
+  .brandmark h1{
+    font-family: 'Trebuchet MS', sans-serif;
+    letter-spacing: 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin: 0;
+  }
+
+  .card{
+    margin-top: 28px;
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(160deg, #161410, #0c0b09 70%);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 26px 26px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:-60px; right:-60px;
+    width:160px; height:160px;
+    background: radial-gradient(circle, rgba(201,162,75,0.18), transparent 70%);
+  }
+
+  .name{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+    margin: 0 0 2px;
+  }
+  .role{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(244,236,216,0.75);
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+
+  .divider{
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 0 18px;
+  }
+
+  .row{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14.5px;
+  }
+  .row:last-child{border-bottom:none;}
+  .row .ic{
+    flex: 0 0 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(201,162,75,0.12);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 14px;
+  }
+  .row a{
+    color: var(--cream);
+    text-decoration:none;
+    word-break: break-word;
+  }
+  .row a:hover{ color: var(--gold-light); }
+  .row .label{
+    display:block;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1px;
+  }
+
+  .actions{
+    margin-top: 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .btn{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+    text-align:center;
+    text-decoration:none;
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    transition: all .2s ease;
+  }
+  .btn.full{ grid-column: 1 / -1; }
+  .btn.primary{
+    background: linear-gradient(135deg, var(--gold), #a9812f);
+    color: #14110b;
+    border: none;
+    font-weight:bold;
+  }
+  .btn:hover{ filter: brightness(1.15); }
+
+  .qr-wrap{
+    margin-top: 26px;
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 8px;
+  }
+  #qrcode{ width: 180px; height:180px; }
+  .qr-caption{
+    color:#1a1712;
+    font-family:'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    text-align:center;
+    letter-spacing: 0.5px;
+  }
+
+  footer{
+    margin-top: 26px;
+    text-align:center;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(244,236,216,0.4);
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="brandmark">
+  <svg class="triangle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,10 90,80 10,80" fill="none" stroke="#c9a24b" stroke-width="6"/>
+    <polygon points="50,30 70,75 30,75" fill="#c9a24b"/>
+  </svg>
+  <h1>ALPHA MOTORS</h1>
+</div>
+
+<div class="card">
+  <p class="name" id="cfg-name">Jonas JIPBOUO</p>
+  <p class="role" id="cfg-role">Directeur des Affaires Générales</p>
+  <div class="divider"></div>
+
+  <div class="row">
+    <div class="ic">✆</div>
+    <div>
+      <span class="label">Téléphone</span>
+      <a id="cfg-phone-link" href="tel:+237655461180">+237 6 55 46 11 80</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ic">💬</div>
+    <div>
+      <span class="label">WhatsApp</span>
+      <a id="cfg-whatsapp-link" href="https://wa.me/237655461180" target="_blank" rel="noopener">+237 6 55 46 11 80</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ic">✉</div>
+    <div>
+      <span class="label">Email</span>
+      <a id="cfg-email-link" href="mailto:j.jipbouo@alphamotors-cameroun.com">j.jipbouo@alphamotors-cameroun.com</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ic">🌐</div>
+    <div>
+      <span class="label">Site web</span>
+      <a id="cfg-website-link" href="https://alphamotors-cameroun.com" target="_blank" rel="noopener">alphamotors-cameroun.com</a>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn primary full" id="cfg-catalogue-link" href="catalogue.pdf" target="_blank" rel="noopener">📘 Voir le catalogue</a>
+    <a class="btn" id="cfg-call-btn" href="tel:+237655461180">Appeler</a>
+    <a class="btn" id="cfg-whatsapp-btn" href="https://wa.me/237655461180" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div>
+
+<div class="qr-wrap">
+  <div id="qrcode"></div>
+  <p class="qr-caption">Scannez pour retrouver cette carte<br>et le catalogue Alpha Motors</p>
+</div>
+
+<footer>ALPHA MOTORS — Mini-Prix, Bastos, Yaoundé, Cameroun</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  /* ============================================================
+     CONFIG — modifiez uniquement les valeurs ici
+     ============================================================ */
+  const CONFIG = {
+    name: "Jonas JIPBOUO",
+    role: "Directeur des Affaires Générales",
+    phone: "+237 6 55 46 11 80",       // numéro affiché
+    phoneTel: "+237655461180",          // numéro pour les liens tel:/wa.me (sans espaces)
+    whatsapp: "+237 6 55 46 11 80",
+    email: "j.jipbouo@alphamotors-cameroun.com",
+    website: "alphamotors-cameroun.com",
+    websiteUrl: "https://alphamotors-cameroun.com",
+    catalogueUrl: "catalogue.pdf",      // mettre le lien réel du PDF (ou une URL externe)
+
+    // URL finale de CETTE page une fois publiée sur GitHub Pages
+    // (c'est ce lien que le QR code va encoder). Ex :
+    // "https://votre-user.github.io/alpha-motors-card/"
+    qrTargetUrl: "https://italphamotors-ui.github.io/carte-jonas-jipbouo/"
+  };
+  /* ============================================================ */
+
+  document.getElementById("cfg-name").textContent = CONFIG.name;
+  document.getElementById("cfg-role").textContent = CONFIG.role;
+
+  document.getElementById("cfg-phone-link").textContent = CONFIG.phone;
+  document.getElementById("cfg-phone-link").href = "tel:" + CONFIG.phoneTel;
+
+  document.getElementById("cfg-whatsapp-link").textContent = CONFIG.whatsapp;
+  document.getElementById("cfg-whatsapp-link").href = "https://wa.me/" + CONFIG.phoneTel.replace("+","");
+
+  document.getElementById("cfg-email-link").textContent = CONFIG.email;
+  document.getElementById("cfg-email-link").href = "mailto:" + CONFIG.email;
+
+  document.getElementById("cfg-website-link").textContent = CONFIG.website;
+  document.getElementById("cfg-website-link").href = CONFIG.websiteUrl;
+
+  document.getElementById("cfg-catalogue-link").href = CONFIG.catalogueUrl;
+  document.getElementById("cfg-call-btn").href = "tel:" + CONFIG.phoneTel;
+  document.getElementById("cfg-whatsapp-btn").href = "https://wa.me/" + CONFIG.phoneTel.replace("+","");
+
+  new QRCode(document.getElementById("qrcode"), {
+    text: CONFIG.qrTargetUrl,
+    width: 180,
+    height: 180,
+    colorDark: "#0d0c0a",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
