@@ -300,15 +300,6 @@
   document.getElementById("cfg-catalogue-link").href = CONFIG.catalogueUrl;
   document.getElementById("cfg-call-btn").href = "tel:" + CONFIG.phoneTel;
   document.getElementById("cfg-whatsapp-btn").href = "https://wa.me/" + CONFIG.phoneTel.replace("+","");
-
-  new QRCode(document.getElementById("qrcode"), {
-    text: CONFIG.qrTargetUrl,
-    width: 180,
-    height: 180,
-    colorDark: "#0d0c0a",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
 </script>
 
 </body>
